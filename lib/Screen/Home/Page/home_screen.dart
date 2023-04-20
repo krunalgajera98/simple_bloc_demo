@@ -24,7 +24,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  // late InDecBloc _inDecBloc;
   late HomeBloc _homeBloc;
   final ScrollController _scrollController = ScrollController();
   final List<ApiResData> apiResData = [];
@@ -32,7 +31,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     _homeBloc = BlocProvider.of<HomeBloc>(context);
-    // _inDecBloc = BlocProvider.of<InDecBloc>(context);
     _scrollController.addListener(() {
       if (_scrollController.position.atEdge) {
         if (_scrollController.position.pixels == 0) {
@@ -93,6 +91,7 @@ class _HomeViewState extends State<HomeView> {
           ElevatedButton(
             onPressed: () {
               _homeBloc.add(FetchApiEvent());
+              // context.read<HomeBloc>().add(FetchApiEvent());
             },
             child: const Text('FetchApiEvent'),
           ),

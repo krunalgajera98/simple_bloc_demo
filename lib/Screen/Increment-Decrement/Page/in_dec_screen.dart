@@ -26,12 +26,12 @@ class InDecScreenView extends StatefulWidget {
 }
 
 class _InDecScreenViewState extends State<InDecScreenView> {
-  late InDecBloc _inDecBloc;
+  // late InDecBloc _inDecBloc;
 
   @override
   void initState() {
     super.initState();
-    _inDecBloc = BlocProvider.of<InDecBloc>(context);
+    // _inDecBloc = BlocProvider.of<InDecBloc>(context);
   }
 
   @override
@@ -45,16 +45,9 @@ class _InDecScreenViewState extends State<InDecScreenView> {
           Expanded(
             child: BlocBuilder<InDecBloc, InDecState>(
               builder: (context, state) {
-                print('state ==> $state');
                 if (state is InDecInitial) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state is CounterIncrementState ||
-                    state is CounterDecrementState ||
-                    state is CounterLongPressState ||
-                    state is CounterResetState) {
-                  print('state ==> ${state.index}');
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is CounterState) {
                   return Center(
                     child: Text('index: ${state.index}'),
                   );
@@ -70,22 +63,26 @@ class _InDecScreenViewState extends State<InDecScreenView> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  _inDecBloc.add(IncrementCounterEvent());
+                  context.read<InDecBloc>().add(IncrementCounterEvent());
+                  // _inDecBloc.add(IncrementCounterEvent());
                 },
                 child: const Icon(Icons.exposure_plus_1),
               ),
               ElevatedButton(
                 onPressed: () {
-                  _inDecBloc.add(ResetCounterEvent());
+                  context.read<InDecBloc>().add(ResetCounterEvent());
+                  // _inDecBloc.add(ResetCounterEvent());
                 },
                 onLongPress: () {
-                  _inDecBloc.add(LongPressCounterEvent());
+                  context.read<InDecBloc>().add(LongPressCounterEvent());
+                  // _inDecBloc.add(LongPressCounterEvent());
                 },
                 child: const Icon(Icons.refresh),
               ),
               ElevatedButton(
                 onPressed: () {
-                  _inDecBloc.add(DecrementCounterEvent());
+                  context.read<InDecBloc>().add(DecrementCounterEvent());
+                  // _inDecBloc.add(DecrementCounterEvent());
                 },
                 child: const Icon(Icons.exposure_minus_1),
               ),

@@ -4,26 +4,26 @@ import 'package:demo_block/Screen/Increment-Decrement/Page/in_dec_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Test extends StatelessWidget {
-  const Test({Key? key}) : super(key: key);
+class DashBoard extends StatelessWidget {
+  const DashBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<InDecBloc>(
       create: (context) => InDecBloc(),
-      child: const DemoBlocApp(),
+      child: const _DashBoard(),
     );
   }
 }
 
-class DemoBlocApp extends StatefulWidget {
-  const DemoBlocApp({Key? key}) : super(key: key);
+class _DashBoard extends StatefulWidget {
+  const _DashBoard({Key? key}) : super(key: key);
 
   @override
-  State<DemoBlocApp> createState() => _DemoBlocAppState();
+  State<_DashBoard> createState() => _DashBoardState();
 }
 
-class _DemoBlocAppState extends State<DemoBlocApp> {
+class _DashBoardState extends State<_DashBoard> {
   late InDecBloc _inDecBloc;
 
   @override
@@ -47,14 +47,16 @@ class _DemoBlocAppState extends State<DemoBlocApp> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                  return BlocProvider<InDecBloc>.value(
-                    value: _inDecBloc,
-                    child: const InDecScreen(),
-                  );
-                }));
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) {
+                    return BlocProvider<InDecBloc>.value(
+                      value: _inDecBloc,
+                      child: const InDecScreen(),
+                    );
+                  }),
+                );
               },
-              child: const Text('Increment-Decrement demo'),
+              child: const Text('Increment-Decrement Page'),
             ),
           ],
         ),

@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
     String token = await SharedPrefs.getToken();
     await Future.delayed(const Duration(seconds: 3));
     if (token != '') {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Test()));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const DashBoard()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('User Not Exist!'),

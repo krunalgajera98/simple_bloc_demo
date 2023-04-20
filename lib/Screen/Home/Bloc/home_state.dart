@@ -1,5 +1,3 @@
-
-
 import 'package:demo_block/model/api_res_model.dart';
 import 'package:equatable/equatable.dart';
 
